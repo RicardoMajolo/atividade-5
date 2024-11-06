@@ -1,0 +1,33 @@
+/*4. Escreva um programa que gere um vetor com 20 valores inteiros gerados de forma aleatória. Após
+isso, o programa deve enviar o vetor como parâmetro para um procedimento, o qual deve inverter
+a ordem de seus elementos. O conteúdo do vetor deve ser exibido na tela antes e após a chamada
+do procedimento. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void inverterOrdem(int vet[], int tam){
+    if (tam<0){
+        return;
+    }
+    int temp = vet[tam-1];
+    vet[tam-1] = vet[0];
+    vet[0] = temp;
+    inverterOrdem(vet+1, tam-2);
+
+}
+int main () {
+    int tam=20;
+    int vet[20];
+
+    srand (time(NULL));
+    
+    for (int i=0; i<20; i++){
+        vet[i] = rand () % 100;
+        printf ("%i ", vet[i]);
+    }
+    inverterOrdem(vet, tam);
+    printf ("\n");
+    for (int i=0; i<20; i++){
+        printf ("%i ", vet[i]);
+    }
+}
