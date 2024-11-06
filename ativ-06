@@ -1,0 +1,27 @@
+/* 6. Crie uma sub-rotina que receba por parâmetro um vetor de inteiros e os endereços de duas
+variáveis inteiras (min e max). Ao passar essas variáveis para a sub-rotina, o programa deve
+identificar o maior e o menor elementos do vetor e armazená-los nas variáveis recebidas como
+parâmetro. */
+#include <stdio.h>
+void MaiorMenor (int vet[], int* max, int* min){
+    *max = vet[0];
+    *min = vet[0];
+    for (int i=0; i<10; i++){
+        if (vet[i] > *max){
+            *max = vet[i];
+        }if (vet[i] < *min){
+            *min = vet[i];
+        }
+    }
+}
+int main () {
+    int vet[10];
+    int max, min;
+    for (int i=0; i<10; i++){
+        printf ("%i ) informe um número : ", i+1);
+        scanf ("%i", &vet[i]);
+    }
+    MaiorMenor (vet, &max, &min);
+    printf ("o maior número é : %i\n", max);
+    printf ("o menor númeor é : %i", min);
+}    
