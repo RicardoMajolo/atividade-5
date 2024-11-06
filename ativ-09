@@ -1,0 +1,34 @@
+/* 9. Faça um programa que receba do usuário o tamanho de uma string e aloque dinamicamente essa
+string. Em seguida, o usuário deverá informar o conteúdo dessa string. O programa deve imprimir
+a string sem suas vogais. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int main () {
+    int n;
+    char *string;
+    
+    printf ("informe o tamanho de uma string : ");
+    scanf ("%i", &n);
+    
+    string = malloc (n * sizeof(char));
+    
+    getchar();
+    printf ("informe o conteúdo da string : ");
+    fgets (string, n+1, stdin);
+    string[strcspn(string, "\n")] = '\0';
+    
+    for (int i=0; i<n; i++){
+        if (*(string+i) != tolower('a')
+        &&  *(string+i) != tolower('e')
+        &&  *(string+i) != tolower('i')
+        &&  *(string+i) != tolower('o')
+        &&  *(string+i) != tolower('u')){    
+            printf ("%c", *(string+i));
+        }    
+    }
+    free (string);
+    return 0;
+}
