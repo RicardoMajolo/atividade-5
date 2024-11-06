@@ -1,0 +1,40 @@
+/* 2. Escreva um programa que leia um número inteiro N. A seguir, o programa deve apresentar duas
+opções para o usuário:
+a. Ordem crescente
+b. Ordem decrescente
+O programa deve apresentar todos os números naturais de zero até N de acordo com a opção
+escolhida pelo usuário. Utilize funções recursivas para realizar as operações. */
+#include <stdio.h>
+void crescente (int n){
+    if (n<0){
+        return;   
+    }crescente(n-1);
+    printf ("%i ", n);
+}
+void decrescente (int n){
+    if (n<0){
+        return;   
+    }printf ("%i ", n);
+    decrescente(n-1);
+}
+int main () {
+    int n;
+    char opcao;
+    printf ("Informe um número : ");
+    scanf ("%d", &n);
+    printf ("Escolha uma opção :\n");
+    printf ("a. ordem crescente\n");
+    printf ("b. ordem decrescente\n");
+    scanf (" %c", &opcao);
+    switch (opcao){
+        case 'a':
+            crescente(n);
+        break;
+        case 'b':
+            decrescente(n);
+        break;
+        default:
+            printf ("erro");
+        break;    
+    }
+}
