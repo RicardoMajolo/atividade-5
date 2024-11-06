@@ -1,0 +1,78 @@
+/*11. Crie um programa que receba do usuário dois números N e M e crie uma matriz de inteiros N x
+M. A seguir a matriz deve ser preenchida com valores aleatórios de forma automática. Por fim, o
+programa deve localizar os três maiores números contidos na matriz e exibir os índices da linha e
+coluna onde se encontra cada um deles */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void ApresentarMatriz (int** mat, int n, int m){
+    for (int i=0; i<n; i++){
+        for (int j=0; j<m; j++){
+            printf ("%02i ", mat[i][j]);
+        }
+        printf ("\n");
+    }
+}
+void MaioresValores(int** mat, int n, int m, int* GGG, int* GG, int* G, int* GGGi, int* GGGj, int* GGi, int* GGj, int* Gi, int* Gj){
+    *GGG = mat[0][0];
+    *GG =  mat[0][0];
+    *G =   mat[0][0];    
+    for (int t=0; t<3; t++){
+        for (int i=0; i<n; i++){
+            for (int j=0; j<m; j++){
+                
+                if (t == 0){
+                    if (mat[i][j] > *GGG){
+                        *GGG = mat[i][j];
+                        *GGGi = i;
+                        *GGGj = j;
+                    }
+                }
+                if (t == 1){
+                    if (mat[i][j] > *GG && mat[i][j] < *GGG){
+                        *GG = mat[i][j];
+                        *GGi = i;
+                        *GGj = j;
+                    }
+                }    
+                if (t == 2){
+                    if (mat[i][j] > *G && mat[i][j] < *GG){
+                        *G = mat[i][j];
+                        *Gi = i;
+                        *Gj = j;
+                    }
+                }    
+            }
+        }
+    }
+}
+int main () {
+    int n, m;
+    int **mat;
+    int GGG, GG, G; 
+    int GGGi, GGGj, GGi, GGj, Gi, Gj; 
+    srand (time(NULL));
+    
+    printf ("informe o número de linhas (n) : ");
+    scanf ("%i", &n);
+    printf ("informe o número de colunas (m) : ");
+    scanf ("%i", &m);
+    
+    mat = malloc (n * sizeof(int *));
+    
+    for (int i=0; i<n; i++){
+        *(mat+i) = calloc (m, sizeof(int));
+        for (int j=0; j<m; j++){
+            mat[i][j] = rand () % 100;
+        }
+    }
+    ApresentarMatriz (mat, n, m);
+    MaioresValores (mat, n, m, &GGG, &GG, &G, &GGGi, &GGGj, &GGi, &GGj, &Gi, &Gj);
+    printf ("\nos três maiores valores, respectivamente, são : %i [%i][%i], %i [%i][%i], %i [%i][%i]", GGG, GGGi, GGGj, GG, GGi, GGj, G, Gi, Gj);
+    for (int i=0; i<n; i++){
+        free (*(mat+i));
+    }
+    free (mat);
+    return 0;
+}
