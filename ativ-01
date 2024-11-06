@@ -1,0 +1,29 @@
+/*1. Faça um programa que gere valores aleatórios para um vetor de 20 elementos do tipo inteiro. O
+programa deve conter uma função recursiva para apresentar os valores do vetor, separados por
+pipes (“ | ”). */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void apresentarValores(int vet[], int num){
+    if (num==0){
+        return;
+    }
+    if (num < 20){
+        printf ("| ");
+    }
+    printf ("%d ", vet[num]);
+    apresentarValores(vet, num-1);
+
+
+}
+int main () {
+    int num=20;
+    srand(time(NULL));
+
+    int vet[20];
+    for (int i=0; i<20; i++){
+        vet[i] = rand () % 100;
+    }
+    apresentarValores(vet, num);
+    return 0;
+}
