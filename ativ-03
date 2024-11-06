@@ -1,0 +1,49 @@
+/* 3. Escreva um programa que contenha um vetor para armazenar 15 valores inteiros. O vetor pode
+ser preenchido de forma automática ou manualmente. O programa deve apresentar os valores do
+vetor e invocar uma função recursiva para encontrar o menor valor no vetor. Use o seguinte
+protótipo de função: int menorValor (int vet[], int tam, int menor); */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int menorValor (int vet[], int tam, int menor){
+    if (tam == 0){
+        return menor;
+    }
+    if (vet[tam] < menor){
+        menor = vet[tam];
+    }
+    return menorValor(vet, tam-1, menor);
+}
+int main () {
+
+    srand (time(NULL));
+    int tam=15;
+    int vet[15];
+    int opcao;
+    printf ("escolha uma das opções :\n");
+    printf ("1 - preencher vetor manualmente\n");
+    printf ("2 - preencher vetor aleatoriamente\n");
+    scanf ("%i", &opcao);
+    switch (opcao){
+        case 1:
+            for (int i=0; i<15; i++){
+                printf ("%i) ", i+1);
+                scanf ("%i", &vet[i]);
+            }
+            break;
+        case 2:
+            for (int i=0; i<15; i++){
+                vet[i] = rand() % 100;
+            }    
+            break;
+        default:
+            printf ("erro");
+            break;        
+    }
+    for (int i=0; i<15; i++){
+        printf ("%i ", vet[i]);
+    }
+    printf ("\n");
+    int menor = vet[0];
+    printf ("o menor valor é : %i", menorValor (vet, tam, menor));
+}
