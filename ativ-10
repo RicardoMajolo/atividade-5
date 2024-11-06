@@ -1,0 +1,47 @@
+/* 10. Escreva um programa que solicite ao usuário um número inteiro N. O programa deve alocar
+dinamicamente um vetor de N posições para armazenar números inteiros, no qual seus elementos
+devem ser gerados de forma aleatoriamente. O programa deve conter duas sub-rotinas para
+imprimir na tela apenas os números pares e ímpares, respectivamente. */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void ApresentarNumerosPares(int vet[], int n){
+    printf ("Números pares : ");
+    for (int i=0; i<n; i++){
+        if (*(vet+i) % 2 == 0){
+            printf ("%i ", *(vet+i));
+        }
+    }
+    printf ("\n");
+}
+
+void ApresentarNumerosImpares(int vet[], int n){
+    printf ("Números ímpares : ");
+    for (int i=0; i<n; i++){
+        if (*(vet+i) % 2 != 0){
+            printf ("%i ", *(vet+i));
+        }
+    }
+    printf ("\n");
+}
+
+int main () {
+    
+    int n;
+    int *vet;
+    
+    srand (time(NULL));
+    
+    printf ("informe um tamanho para um vetor : ");
+    scanf ("%i", &n);
+    
+    vet = calloc (n, sizeof(int));
+    
+    for (int i=0; i<n; i++){
+        *(vet+i) = rand () % 100;
+    }
+    ApresentarNumerosPares(vet, n);
+    ApresentarNumerosImpares(vet, n);
+    
+    free (vet);
+}
